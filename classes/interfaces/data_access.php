@@ -25,6 +25,9 @@ if (isset($urlArr['path'])) {
   }
 }
 
+if (!defined('CONST_DB_SCHEMA')) {define('CONST_DB_SCHEMA', 'rad');}
+
+
 //----------------------------------------------------------------------------------------------------------------------
 class Data_Access {
 

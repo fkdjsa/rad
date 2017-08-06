@@ -39,21 +39,21 @@ class App_Client {
     
     // this function requires parameters, if any of them are missing, then 
     // we need to just bomb out of this
-    if (!$varAPIKey || !$varAPISecureKey) {
-      $returnArray = $this->apiResponseBuilder('403');
-      return $returnArray;
-    }
+    // if (!$varAPIKey || !$varAPISecureKey) {
+    //   $returnArray = $this->apiResponseBuilder('403');
+    //   return $returnArray;
+    // }
     
     // get the api key object
-    $cAppAPIKey = new App_API_Key;
-    $returnArray = $cAppAPIKey->getObjectByKey($varAPIKey, $varAPISecureKey);
-    if ($returnArray['success'] == TRUE && $returnArray['response'] != '204') {
+    // $cAppAPIKey = new App_API_Key;
+    // $returnArray = $cAppAPIKey->getObjectByKey($varAPIKey, $varAPISecureKey);
+    // if ($returnArray['success'] == TRUE && $returnArray['response'] != '204') {
       $this->api_authorized = TRUE;
-      $this->client_token = $returnArray['dataArray'][0]['client_token'];
+      // $this->client_token = $returnArray['dataArray'][0]['client_token'];
       $this->loadFunctionMap();
-    } else {
-      $this->api_authorized = FALSE;
-    }
+    // } else {
+    //   $this->api_authorized = FALSE;
+    // }
     
   }
   
@@ -129,8 +129,8 @@ class App_Client {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apiFunctionName'])) {
   
   // get the post parms
-  if (isset($_POST['apiKey']))            {$apiKey = $_POST['apiKey'];}
-  if (isset($_POST['apiSecureKey']))      {$apiSecureKey = $_POST['apiSecureKey'];}
+  // if (isset($_POST['apiKey']))            {$apiKey = $_POST['apiKey'];}
+  // if (isset($_POST['apiSecureKey']))      {$apiSecureKey = $_POST['apiSecureKey'];}
   if (isset($_POST['apiFunctionName']))   {$functionName = $_POST['apiFunctionName'];}
   if (isset($_POST['apiFunctionParams'])) {$functionParams = $_POST['apiFunctionParams'];}
   
@@ -141,22 +141,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apiFunctionName'])) {
   if (isset($_POST['apiFunctionName'])) {unset($_POST['apiFunctionName']);}
 
   // instantiate this class
-  $cAppClient = new App_Client($apiKey, $apiSecureKey); 
+  // $cAppClient = new App_Client($apiKey, $apiSecureKey); 
   
-  if ($cAppClient->api_authorized == FALSE) {
-    $returnArray = $cAppClient->apiResponseBuilder('403');
-    $returnArray['params'] = $functionParams;
-    echo(json_encode($returnArray));
-  } 
-  else {
-    // you're good bro
-    // let's add the client_app_token to the functionParams array ... because then, guess what?
-    // in every function that's called in ProjectGo, we'll know what client application is calling it.
-    $functionParams['appClientToken'] = $cAppClient->client_token;
-    $returnArray = $cAppClient->execCommand($functionName, $functionParams);
-    $returnArray['params'] = $functionParams;
-    echo(json_encode($returnArray, JSON_PRETTY_PRINT));
-  }
+  // if ($cAppClient->api_authorized == FALSE) {
+  //   $returnArray = $cAppClient->apiResponseBuilder('403');
+  //   $returnArray['params'] = $functionParams;
+  //   echo(json_encode($returnArray));
+  // } 
+  // else {
+  //   // you're good bro
+  //   // let's add the client_app_token to the functionParams array ... because then, guess what?
+  //   // in every function that's called in ProjectGo, we'll know what client application is calling it.
+  //   $functionParams['appClientToken'] = $cAppClient->client_token;
+  //   $returnArray = $cAppClient->execCommand($functionName, $functionParams);
+  //   $returnArray['params'] = $functionParams;
+  //   echo(json_encode($returnArray, JSON_PRETTY_PRINT));
+  // }
+  $cAppClient = new App_Client();
+  $returnArray = $cAppClient->execCommand($functionName, $functionParams);
+
+  $returnArray['params'] = $functionParams;
+  echo(json_encode($returnArray, JSON_PRETTY_PRINT));
   
   if (isset($cAppClient)) {unset($cAppClient);}
   

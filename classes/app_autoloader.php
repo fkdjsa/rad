@@ -19,7 +19,7 @@
 //   echo file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/404.html');
 //   die;
 // }
-
+if (!defined('CONST_INCLUDE_PATH')) {define('CONST_INCLUDE_PATH', '../');}
 //----------------------------------------------------------------------------------------------------------------------
 // Build the class mapping array
 $mapping = array(
@@ -31,9 +31,9 @@ $mapping = array(
     // 'App_Attr' => CONST_INCLUDE_PATH . 'classes/interfaces/app_attr.php',
     // 'App_Attr_Type' => CONST_INCLUDE_PATH . 'classes/interfaces/app_attr.php',
     // 'App_Config' => CONST_INCLUDE_PATH . 'classes/interfaces/app_config.php',
-    // 'App_Response' => CONST_INCLUDE_PATH . 'classes/interfaces/app_response.php',
-    'Data_Access' => './classes/interfaces/data_access.php',
-    'User_Profile' => './classes/interfaces/user_profile.php'
+    'App_Response' => CONST_INCLUDE_PATH . 'classes/interfaces/app_response.php',
+    'Data_Access' =>  CONST_INCLUDE_PATH . 'classes/interfaces/data_access.php',
+    'User_Profile' => CONST_INCLUDE_PATH . 'classes/interfaces/user_profile.php'
 
     
     // utilities

@@ -383,13 +383,13 @@ class User_Profile extends Data_Access {
       if (isset($newRecordId) && $newRecordId != 0) {
         
         // insert default App Attr Relationships 
-        $cUserProfile->insertDefaultAttrRels($newRecordId);
+        // $cUserProfile->insertDefaultAttrRels($newRecordId);
         
         // send Welcome email
-        $cAppEmail = new App_Email();
-        $cAppEmail->sendWelcomeEmail( $cUserProfile->email );
-        $cAppEmail->sendVerificationEmail( $cUserProfile, $newRecordId );
-        unset($cAppEmail);
+        // $cAppEmail = new App_Email();
+        // $cAppEmail->sendWelcomeEmail( $cUserProfile->email );
+        // $cAppEmail->sendVerificationEmail( $cUserProfile, $newRecordId );
+        // unset($cAppEmail);
         
         // if a new record - return the entire object to be used in the calling function 
         $newRecordItem = $this->listUserProfile(['userProfileId'=>$newRecordId]);

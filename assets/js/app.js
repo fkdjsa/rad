@@ -59,7 +59,7 @@
     $.ajax({
       type: 'POST',
       // url: $('#constHostPrefix').html() + 'classes/app_client.php',
-      url: 'localhost/rad/classes/app_client.php',
+      url: 'http://localhost/rad/classes/app_client.php',
       data: apiParams,
       success: function(res) {
 
@@ -141,6 +141,7 @@
     apiFunctionParams = {
       'userProfileId': $('#userId').html(),
       'objectProperties' : {
+        'id': 0,
         'first_name': $('.settingsInputField[name=first_name]').val(),
         'last_name': $('.settingsInputField[name=last_name]').val(),
         'email': $('.settingsInputField[name=email]').val(),
@@ -191,7 +192,7 @@
     }
 
 
-    saveRAD();
+    saveRad();
 
   });
 
