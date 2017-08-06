@@ -1,0 +1,348 @@
+/* #####################################################################################################################
+ *
+ *  /css/admin.css
+ *   site styles
+ *
+ *   Date      Author              Description
+ *   --------  -----------------   -----------------------------------------------------
+ *   08/2017   Michael Sayer       Designed and coded
+ *
+ * ################################################################################################################## */
+
+/*
+
+Style Guide
+---------------------------------------------
+
+Typefaces: 
+font-family: 'Merriweather', serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Merriweather Sans', sans-serif;
+
+Colors: 
+Tommy Red - #de002c
+Softer White - #EEF5DB
+Soft Blue - #759399
+Hard Blue - #0D2E56
+
+
+*/
+
+
+
+ *, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /*outline: 1px dotted #0ed4bf;*/
+}
+
+html {
+  height:100%;
+  min-height:100%;
+  margin:0;
+  padding:0;
+}
+
+body {
+  width: 100%;
+  height:100%;
+  min-height:100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.hide {
+  display: none;
+}
+
+.hideImportant {
+  display:none !IMPORTANT;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+h1 {
+  font-family: 'Merriweather Sans', sans-serif;
+  color: #686868;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Merriweather Sans', sans-serif;
+  color: #686868;
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 700;
+}
+
+h3 {
+  font-family: 'Merriweather Sans', sans-serif;
+  color: #686868;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+div {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/*  BUTTONS  */
+
+.largeButton {
+  width: 100%;
+  max-width: 250px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.smallButton {
+  width: 90px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.primaryButton {
+  background-color: #0D2E56;
+  color: #fff;
+}
+
+.secondaryButton {
+  background-color: #c9c9c9;
+  color: #686868;
+}
+
+.alertButton {
+  background-color: #de002c;
+  color: #fff;
+}
+
+.buttonDisabled {
+  color: #d0d2d3;
+  background-color: #fff;
+  border: 1px solid #d0d2d3;
+  cursor: not-allowed;
+}
+
+.radSubmitButton {
+  margin-top: 15px;
+
+}
+
+
+/*  FORM FIELDS  */
+
+.settingsInputAlert {
+  background-color: #e7897f !IMPORTANT;
+  border: 1px solid #e7897f !IMPORTANT;
+}
+
+.settingsContainer {
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: hsla(0, 0%, 86%, .25);
+}
+
+.settingsForm {
+  width: 50%;
+}
+
+.settingsInputLabel {
+  margin-top: 6px;
+  margin-bottom: 0px;
+  float: none;
+}
+
+.settingsHelpText {
+  width: 50%;
+  font-size: 14px;
+  color: #888;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.settingsInputField {
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  color: #686868;
+  border-style: none;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.settingsTextArea {
+  width: 100%;
+  height: 300px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  color: #686868;
+  border-style: none;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.settingsDropDown {
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  color: #686868;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+
+#mainRadForm {
+  margin-right: 25px;
+  margin-bottom: 0px;
+  margin-left: 25px;
+  border-radius: 16px;
+  padding: 50px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .25);
+}
+
+
+/*   NavBar    */
+
+.navContainer {
+  background-color: #de002c;
+  color: #F3F4EF;
+  margin-bottom: 25px;
+}
+
+.navLogo {
+  color: #F3F4EF;
+  width: 50%;
+  margin-left: 73px;
+}
+
+/*   PageContent    */
+
+.headlineContainer {
+  padding-bottom: 25px;
+  margin-left: 73px;
+}
+
+.pageContentContainer{
+  overflow: scroll;
+  position: relative;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+/*  PAGE DARK AND PAGE LIGHT  */
+
+#pageDark {
+  height:150vh;
+  width:100vw;
+  position:fixed;
+  top:0px;
+  left:0px;
+  background-color:#000000;
+  opacity:0.5;
+  z-index:1;
+}
+
+#pageLight {
+  height:100%;
+  width:100%;
+  position:absolute;
+  top:0px;
+  left:0px;
+  background-color:#ffffff;
+  z-index:1;
+}
+
+
+
+
+
+
+/*  @media STYLES  */
+
+@media (max-width: 991px) {
+  
+  .mainContentContainer {
+    padding: 25px;
+  }
+  
+  .settingsHelpText {
+    width: 75%;
+  }
+  
+  .settingsForm {
+    width: 75%;
+  }
+  
+  
+}
+
+@media (max-width: 767px) {
+  
+}
+
+@media (min-width: 602px) {
+  
+}
+
+@media (max-width: 545px){
+  
+}
+
+@media (max-width: 479px) {
+  
+  .mainContentContainer {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  /*  FORMS  */
+  
+  .settingsForm {
+    width: 100%;
+  }
+
+  .settingsHelpText {
+    width: 75%;
+  }
+  
+  .contentView {
+    margin-right: 25px;
+    margin-left: 25px;
+  }
+  
+  
+}
