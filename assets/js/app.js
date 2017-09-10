@@ -11,7 +11,11 @@
 
 
  $(document).ready(function() {
+  var geocoder;
+  var map;
 
+  // init map
+  initialize();
 
   //--------------------------------------------------------------------------------------------------------------------
   //       FUNCTIONS
@@ -21,6 +25,8 @@
   $(function() {
       $("form").submit(function() { return false; });
   });
+
+  //----------------------------------------------------------------------------
 
   $(document).on('keyup', function (e) {
     var code;
@@ -131,9 +137,13 @@
 
   }
 
+  //----------------------------------------------------------------------------
+
   function saveRADCallback(varData) {
     console.log(varData);
   }
+
+  //----------------------------------------------------------------------------
 
   function saveRad() {
     var apiFunctionParams, apiFunctionName;
@@ -155,6 +165,81 @@
     apiFunctionName = 'updateUserProfile';
 
     interfaceCall(apiFunctionParams, apiFunctionName, saveRADCallback);
+  }
+
+  //----------------------------------------------------------------------------
+
+  function listCountyOfficeCallback(varData) {
+    console.log(varData);
+  }
+
+  //----------------------------------------------------------------------------
+
+  function listCountyOffice(varCountyDetails) {
+    var apiFunctionParams, apiFunctionName;
+    
+    apiFunctionParams = {
+    };
+
+    apiFunctionName = 'listCountyOffice';
+
+    interfaceCall(apiFunctionParams, apiFunctionName, listCountyOfficeCallback);
+  }
+
+  //----------------------------------------------------------------------------
+  // MAPS SHIT
+  //----------------------------------------------------------------------------
+
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(43.618881,-116.215019);
+    var mapOptions = {
+      zoom: 10,
+      center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  }
+
+  //----------------------------------------------------------------------------
+
+  function codeAddress() {
+
+    var addressOne = $('#addressOne').val();
+    var addressTwo = $('#addressTwo').val();
+    var city = $('#mainRadForm').find('.settingsInputField[name=city]').val();
+    var zip = $('#mainRadForm').find('.settingsInputField[name=zip]').val();
+    var county;
+
+    // check to see if we got both lines
+    if (addressTwo === '') {
+      address = addressOne + ' ' + city + ' Idaho ' + zip;
+    } else {
+      address = addressOne + ' ' + addressTwo + ' Idaho ' + city + ' ' + zip;
+    }
+
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        console.log(status);
+        console.log(results);
+
+        // get county
+        county = results[0].address_components[3].long_name;
+
+        console.log('Your county is: ', county);
+
+        // pair up with county office from database
+        listCountyOffice(county);
+        
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
   }
 
   //--------------------------------------------------------------------------------------------------------------------
@@ -191,11 +276,37 @@
       $('#mainRadForm').find('.settingsInputField[name=email]').removeClass('settingsInputAlert');
     }
 
+    // if addressOne is blank
+    if ( $('#mainRadForm').find('.settingsInputField[name=addressOne]').val() === '' ) {
+      notifyUser(3, 'Please address the fields highlighted in red and then try to save again.');
+      $('#mainRadForm').find('.settingsInputField[name=addressOne]').addClass('settingsInputAlert');
+      return false;
+    }  else {
+      $('#mainRadForm').find('.settingsInputField[name=addressOne]').removeClass('settingsInputAlert');
+    }
 
-    saveRad();
+    // if city is blank
+    if ( $('#mainRadForm').find('.settingsInputField[name=city]').val() === '' ) {
+      notifyUser(3, 'Please address the fields highlighted in red and then try to save again.');
+      $('#mainRadForm').find('.settingsInputField[name=city]').addClass('settingsInputAlert');
+      return false;
+    }  else {
+      $('#mainRadForm').find('.settingsInputField[name=city]').removeClass('settingsInputAlert');
+    }
+
+    // if zip is blank
+    if ( $('#mainRadForm').find('.settingsInputField[name=zip]').val() === '' ) {
+      notifyUser(3, 'Please address the fields highlighted in red and then try to save again.');
+      $('#mainRadForm').find('.settingsInputField[name=zip]').addClass('settingsInputAlert');
+      return false;
+    }  else {
+      $('#mainRadForm').find('.settingsInputField[name=zip]').removeClass('settingsInputAlert');
+    }
+
+    codeAddress();
+
+    // saveRad();
 
   });
-
-
 
 }); // end document ready

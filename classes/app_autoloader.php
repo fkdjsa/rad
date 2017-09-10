@@ -34,9 +34,6 @@ $mapping = array(
     'App_Response' => CONST_INCLUDE_PATH . 'classes/interfaces/app_response.php',
     'Data_Access' =>  CONST_INCLUDE_PATH . 'classes/interfaces/data_access.php',
     'User_Profile' => CONST_INCLUDE_PATH . 'classes/interfaces/user_profile.php'
-
-    
-    // utilities
 );
 
 //----------------------------------------------------------------------------------------------------------------------
